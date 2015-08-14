@@ -9,8 +9,8 @@ namespace TechnologyOneProject.Helpers
     public static class BootstrapHelpers
     {
         public static IHtmlString BootstrapLabelFor<TModel, TProp>(
-               this System.Web.Mvc.HtmlHelper<TModel> helper,
-               Expression<Func<TModel, TProp>> property)
+            this HtmlHelper<TModel> helper,
+            Expression<Func<TModel, TProp>> property)
         {
             return helper.LabelFor(property, new
             {
@@ -19,8 +19,8 @@ namespace TechnologyOneProject.Helpers
         }
 
         public static IHtmlString BootstrapLabel(
-                this HtmlHelper helper,
-                string propertyName)
+            this HtmlHelper helper,
+            string propertyName)
         {
             return helper.Label(propertyName, new
             {

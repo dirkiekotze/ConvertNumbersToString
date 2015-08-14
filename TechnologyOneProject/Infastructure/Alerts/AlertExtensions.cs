@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace TechnologyOneProject.Infastructure.Alerts
 {
     public static class AlertExtensions
     {
-        const string Alerts = "_Alerts";
+        private const string Alerts = "_Alerts";
 
         public static List<Alert> GetAlerts(this TempDataDictionary tempData)
         {
@@ -17,7 +14,7 @@ namespace TechnologyOneProject.Infastructure.Alerts
                 tempData[Alerts] = new List<Alert>();
             }
 
-            return (List<Alert>)tempData[Alerts];
+            return (List<Alert>) tempData[Alerts];
         }
 
         public static ActionResult WithSuccess(this ActionResult result, string message)

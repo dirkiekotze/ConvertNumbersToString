@@ -14,6 +14,16 @@ namespace TechnologyOneProject.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+        private static ViewResult SetupController(float input)
+        {
+            //Arrange
+            var controller = new HomeController();
+            //Act
+            var inputNumber = new InputNumber { Number = input };
+            //var result = controller.Index(inputNumber) as ViewResult;
+            var result = controller.Index(inputNumber) as ViewResult;
+            return result;
+        }
 
         [TestMethod]
         public void Given0DollarsReturnEmptyString()
@@ -324,16 +334,7 @@ namespace TechnologyOneProject.Tests.Controllers
 
         }
 
-        private static ViewResult SetupController(float input)
-        {
-            //Arrange
-            var controller = new HomeController();
-            //Act
-            var inputNumber = new InputNumber {Number = input};
-            //var result = controller.Index(inputNumber) as ViewResult;
-            var result = controller.Index(inputNumber) as ViewResult;
-            return result;
-        }
+       
 
 
     }
