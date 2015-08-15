@@ -106,7 +106,16 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DOLLARS.
+        ///   Looks up a localized string similar to DOLLAR.
+        /// </summary>
+        public static string Dollar {
+            get {
+                return ResourceManager.GetString("Dollar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOLLAR(S).
         /// </summary>
         public static string Dollars {
             get {
@@ -156,6 +165,15 @@ namespace TechnologyOneProject {
         public static string ErrorGettingNumber {
             get {
                 return ResourceManager.GetString("ErrorGettingNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Occurred:.
+        /// </summary>
+        public static string ErrorMessage {
+            get {
+                return ResourceManager.GetString("ErrorMessage", resourceCulture);
             }
         }
         
@@ -277,6 +295,15 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to QUADRILLION.
+        /// </summary>
+        public static string Quadrillion {
+            get {
+                return ResourceManager.GetString("Quadrillion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SEVEN.
         /// </summary>
         public static string Seven {
@@ -376,6 +403,15 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TRILLION.
+        /// </summary>
+        public static string Trillion {
+            get {
+                return ResourceManager.GetString("Trillion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TWELVE.
         /// </summary>
         public static string Twelve {
@@ -399,6 +435,15 @@ namespace TechnologyOneProject {
         public static string Two {
             get {
                 return ResourceManager.GetString("Two", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to Calculate. You have too much money.
+        /// </summary>
+        public static string WarningMessage {
+            get {
+                return ResourceManager.GetString("WarningMessage", resourceCulture);
             }
         }
         

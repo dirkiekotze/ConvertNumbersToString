@@ -132,8 +132,11 @@
   <data name="CopyRight" xml:space="preserve">
     <value>All Rights Reserved: Technology One</value>
   </data>
+  <data name="Dollar" xml:space="preserve">
+    <value>DOLLAR</value>
+  </data>
   <data name="Dollars" xml:space="preserve">
-    <value>DOLLARS</value>
+    <value>DOLLAR(S)</value>
   </data>
   <data name="Eight" xml:space="preserve">
     <value>EIGHT</value>
@@ -149,6 +152,9 @@
   </data>
   <data name="ErrorGettingNumber" xml:space="preserve">
     <value>Unable to create number</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Error Occurred:</value>
   </data>
   <data name="Fifteen" xml:space="preserve">
     <value>FIFTEEN</value>
@@ -189,6 +195,9 @@
   <data name="One" xml:space="preserve">
     <value>ONE</value>
   </data>
+  <data name="Quadrillion" xml:space="preserve">
+    <value>QUADRILLION</value>
+  </data>
   <data name="Seven" xml:space="preserve">
     <value>SEVEN</value>
   </data>
@@ -222,6 +231,9 @@
   <data name="Three" xml:space="preserve">
     <value>THREE</value>
   </data>
+  <data name="Trillion" xml:space="preserve">
+    <value>TRILLION</value>
+  </data>
   <data name="Twelve" xml:space="preserve">
     <value>TWELVE</value>
   </data>
@@ -230,6 +242,9 @@
   </data>
   <data name="Two" xml:space="preserve">
     <value>TWO</value>
+  </data>
+  <data name="WarningMessage" xml:space="preserve">
+    <value>Unable to Calculate. You have too much money</value>
   </data>
   <data name="Zero" xml:space="preserve">
     <value />
