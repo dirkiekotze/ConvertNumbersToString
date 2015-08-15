@@ -4,6 +4,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using TechnologyOneProject.Infastructure;
 using StructureMap;
+using TechnologyOneProject.Filters;
 
 
 namespace TechnologyOneProject
@@ -35,6 +36,7 @@ namespace TechnologyOneProject
             ObjectFactory.Configure(cfg =>
             {
                 cfg.AddRegistry(new StandardRegistry());
+                cfg.AddRegistry(new ModelMetadataRegistry());
                 //cfg.AddRegistry(new ControllerRegistry());
                 //cfg.AddRegistry(new ActionFilterRegistry(() => Container ?? ObjectFactory.Container));
                 //cfg.AddRegistry(new TaskRegistry());

@@ -5,28 +5,66 @@
     ViewBag.Title = "Home Page";
 }
 
+<style>
+    section {
+        
+        border-radius: 1em;
+        color: white;
+        left: 50%;
+        margin-right: -50%;
+        padding: 1em;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#Number").forceNumeric();
+        $("#Number").focus();
+        $("#Number").val("");
+
+        $('#Number').keyup(function () {
+            if ($(this).val().indexOf('.') !== -1) {
+                if ($(this).val().split(".")[1].length > 2) {
+                    if (isNaN(parseFloat(this.value))) return;
+                    this.value = parseFloat(this.value).toFixed(2);
+                }
+            }
+            return this;
+        });
+    });
+
+
+</script>
+
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Convert Number</h4>
-        <hr/>
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-        <div class="form-group">
-            @Html.BootstrapLabelFor(model => model.Number)
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Number)
-                @Html.ValidationMessageFor(model => model.Number, "", new {@class = "text-danger"})
+    <section>
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div>
+                    @Html.EditorFor(model => model.Number)
+
+                </div>
+                <div style="margin-top: 10px;" align="center">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+                @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
             </div>
-        </div>
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default"/>
-            </div>
+
         </div>
-    </div>
+
+    </section>
 }

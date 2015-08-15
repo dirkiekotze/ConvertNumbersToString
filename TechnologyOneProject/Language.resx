@@ -129,14 +129,26 @@
   <data name="Billion" xml:space="preserve">
     <value>BILLION</value>
   </data>
+  <data name="ButtonText" xml:space="preserve">
+    <value>Create String</value>
+  </data>
+  <data name="Cent" xml:space="preserve">
+    <value>CENT</value>
+  </data>
+  <data name="Cents" xml:space="preserve">
+    <value>CENTS</value>
+  </data>
   <data name="CopyRight" xml:space="preserve">
     <value>All Rights Reserved: Technology One</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>$</value>
   </data>
   <data name="Dollar" xml:space="preserve">
     <value>DOLLAR</value>
   </data>
   <data name="Dollars" xml:space="preserve">
-    <value>DOLLAR(S)</value>
+    <value>DOLLARS</value>
   </data>
   <data name="Eight" xml:space="preserve">
     <value>EIGHT</value>
@@ -151,7 +163,7 @@
     <value>ELEVEN</value>
   </data>
   <data name="ErrorGettingNumber" xml:space="preserve">
-    <value>Unable to create number</value>
+    <value>UNABLE TO CATER FOR VALUE BIGGER THAN: QUADRILLION.</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
     <value>Error Occurred:</value>

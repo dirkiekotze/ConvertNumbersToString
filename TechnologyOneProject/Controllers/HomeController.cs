@@ -25,7 +25,7 @@ namespace TechnologyOneProject.Controllers
         private const int Twenty = 20;
         private const int Hundred = 100;
         private const int ThousandVal = 1000;
-        private const int CalculateCents = 2;
+        private const int CalculateCent = 2;
         private readonly List<string> _lstHundreds;
         private readonly List<string> _lstInputBreakUp = new List<string>();
         private readonly List<string> _lstTens;
@@ -92,18 +92,18 @@ namespace TechnologyOneProject.Controllers
             };
             #endregion
         }
-
-        public ActionResult Index()
-        {
-            return View(new InputNumber());
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
+
+        public ActionResult Index()
+        {
+            return View(new InputNumber());
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -112,6 +112,7 @@ namespace TechnologyOneProject.Controllers
             #region Variables
 
             var globalString = new StringBuilder();
+            var stringCents = new StringBuilder();
             var stringDollars = new StringBuilder();
             var stringThousands = new StringBuilder();
             var stringMillions = new StringBuilder();
@@ -121,42 +122,75 @@ namespace TechnologyOneProject.Controllers
 
             #endregion
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(inputNumber);
+            try
             {
-                try
+                var splitDollarsAndCents = inputNumber.Number.ToString().Split('.');
+
+                var inputString = splitDollarsAndCents[0];
+
+                CheckInputSize(inputString);
+
+                CalculateCents(splitDollarsAndCents, stringCents);
+
+                SplitInputvalueIntoArrayOfThrees(inputString);
+
+                ExtractStringValuesFromInput(inputString, stringDollars, stringThousands, stringMillions, stringBillions, stringTrillions, stringQuadrillions);
+
+                DisplayStringValues(globalString, stringQuadrillions, stringTrillions, stringBillions, stringMillions, stringThousands, stringDollars, stringCents);
+
+                ViewBag.Output += globalString.ToString();
+
+                if (globalString.Length != 0)
                 {
-                    var splitDollarsAndCents = inputNumber.Number.ToString().Split('.');
-                    var inputString = splitDollarsAndCents[0];
-
-                    SplitInputvalueIntoArrayOfThrees(inputString);
-
-                    ExtractStringValuesFromInput(inputString, stringDollars, stringThousands, stringMillions, stringBillions, stringTrillions, stringQuadrillions);
-
-                    DisplayStringValues(globalString, stringQuadrillions, stringTrillions, stringBillions, stringMillions, stringThousands, stringDollars);
-
-                    ViewBag.Output += globalString.ToString();
-
-                    if (globalString.Length != 0)
-                    {
-                        return View(inputNumber).WithSuccess(globalString.ToString());
-                    }
-
-                    else
-                    {
-                        return View(inputNumber).WithWarning(globalString.ToString());
-                    }
+                    //return View(inputNumber).WithSuccess(globalString.ToString(),string.Format("{0}{1}",Language.Currency,inputNumber.Number));
+                    return View(inputNumber);
                 }
-                catch (Exception err)
-                {
-                    return View(inputNumber).WithError(Language.ErrorMessage + err.Message);
-                }
-
-
-                //return View(retVal.ToString());
-                //return View(inputNumber);
+                
+            }
+            catch (Exception err)
+            {
+                return View(inputNumber).WithInfo(err.Message,string.Empty);
             }
 
+
+            //return View(retVal.ToString());
+            //return View(inputNumber);
+
             return View(inputNumber);
+        }
+
+        private static void CheckInputSize(string inputString)
+        {
+            //Todo:Get better way to do this.
+            if (inputString.Contains("+"))
+            {
+                throw new Exception(Language.ErrorGettingNumber);
+            }
+        }
+
+        private void CalculateCents(string[] splitDollarsAndCents, StringBuilder stringCents)
+        {
+            string inputCentString;
+            if (splitDollarsAndCents.Length != 2) return;
+            //Get to two decimals
+            inputCentString = splitDollarsAndCents[1].Substring(0, splitDollarsAndCents[1].Length);
+            stringCents.Append(string.Format("{0} {1} {2}", string.Empty, Language.And,string.Empty));
+            if (inputCentString.Length == 1)
+            {
+                Calculate0To9(inputCentString, stringCents, _lstUnderTen);
+                stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cent));
+            }
+            else
+            {
+                if (Convert.ToInt32(inputCentString) <= 9)
+                {
+                    Calculate10To19(inputCentString, stringCents, _lstTenTo19);
+                }
+                stringCents.Append(Calculate20To99(inputCentString));
+                stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cents));
+            }
+           
         }
 
         private static string AddSpace(StringBuilder inputString)
@@ -216,7 +250,7 @@ namespace TechnologyOneProject.Controllers
         {
             var strValue = new StringBuilder();
 
-            //099
+            //09:Single Number
             if (numberValue.StartsWith("0"))
             {
                 numberValue = numberValue.Substring(1, numberValue.Length - 1);
@@ -232,7 +266,7 @@ namespace TechnologyOneProject.Controllers
                 //Calc all the First numbers
                 CalculateTensOrHundreds(numberValue.Substring(0, 1), strValue, _lstTens);
                 //Calc all the last numbers
-                strValue.Append(" ");
+                strValue.Append("-");
                 Calculate0To9((numberValue.Substring(1, 1)), strValue, _lstUnderTen);
             }
 
@@ -299,7 +333,7 @@ namespace TechnologyOneProject.Controllers
         }
 
         private void DisplayStringValues(StringBuilder globalString, StringBuilder stringQuadrillions, StringBuilder stringTrillions, StringBuilder stringBillions, StringBuilder stringMillions,
-            StringBuilder stringThousands, StringBuilder stringDollars)
+            StringBuilder stringThousands, StringBuilder stringDollars, StringBuilder stringCents)
         {
             switch (_globalWorkingWithIndicator)
             {
@@ -310,6 +344,7 @@ namespace TechnologyOneProject.Controllers
                     globalString.Append(AddSpace(stringMillions));
                     globalString.Append(AddSpace(stringThousands));
                     globalString.Append(AddAndToValuesOver999(_lstInputBreakUp[0]) + stringDollars);
+                    AddCents(globalString, stringCents);
                     break;
                 case Trillion:
                     globalString.Append(AddSpace(stringTrillions));
@@ -317,25 +352,42 @@ namespace TechnologyOneProject.Controllers
                     globalString.Append(AddSpace(stringMillions));
                     globalString.Append(AddSpace(stringThousands));
                     globalString.Append(AddAndToValuesOver999(_lstInputBreakUp[0]) + stringDollars);
+                    AddCents(globalString, stringCents);
                     break;
                 case Billion:
                     globalString.Append(AddSpace(stringBillions));
                     globalString.Append(AddSpace(stringMillions));
                     globalString.Append(AddSpace(stringThousands));
                     globalString.Append(AddAndToValuesOver999(_lstInputBreakUp[0]) + stringDollars);
+                    AddCents(globalString, stringCents);
                     break;
                 case Million:
                     globalString.Append(AddSpace(stringMillions));
                     globalString.Append(AddSpace(stringThousands));
                     globalString.Append(AddAndToValuesOver999(_lstInputBreakUp[0]) + stringDollars);
+                    AddCents(globalString, stringCents);
                     break;
                 case Thousand:
                     globalString.Append(AddSpace(stringThousands));
                     globalString.Append(AddAndToValuesOver999(_lstInputBreakUp[0]) + stringDollars);
+                    AddCents(globalString, stringCents);
                     break;
                 case Dollar:
                     globalString.Append(stringDollars);
+                    //Check for .1 and no other values
+                    AddCents(globalString, globalString.Length == 0 ? stringCents.Replace(Language.And,"") : stringCents);
                     break;
+            }
+
+
+
+        }
+
+        private static void AddCents(StringBuilder globalString, StringBuilder stringCents)
+        {
+            if (stringCents.Length > 0)
+            {
+                globalString.Append(stringCents);
             }
         }
 
@@ -348,7 +400,7 @@ namespace TechnologyOneProject.Controllers
                 switch (_workingWithIndicator)
                 {
                     case FirstLoop:
-                        CreateValuesAndAddCurrency(inputString, currentStringDollars, Language.Dollars);
+                        CreateValuesAndAddCurrency(inputString, currentStringDollars, Convert.ToInt32(inputString) < 10 ? Language.Dollar : Language.Dollars);
                         break;
                     case SecondLoop:
                         CreateValuesAndAddCurrency(inputString, currentStringThousands, Language.Thousand);
@@ -380,6 +432,7 @@ namespace TechnologyOneProject.Controllers
             return;
         }
 
+        
         private string GetCurrentInputStringFragment(string inputDollarString, int loopCounter)
         {
             return _lstInputBreakUp[loopCounter];

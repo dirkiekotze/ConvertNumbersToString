@@ -3,42 +3,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Number").forceNumeric();
+        });
+
+
+        // forceNumeric() plug-in implementation
+        jQuery.fn.forceNumeric = function () {
+
+            return this.each(function () {
+                $(this).keydown(function (e) {
+                    var key = e.which || e.keyCode;
+
+                    if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+                        // numbers
+                        key >= 48 && key <= 57 ||
+                        // Numeric keypad
+                        key >= 96 && key <= 105 ||
+                        // comma, period and minus, . on keypad
+                       key === 190 || key === 188 || key === 109 || key === 110 ||
+                        // Backspace and Tab and Enter
+                       key === 8 || key === 9 || key === 13 ||
+                        // Home and End
+                       key === 35 || key === 36 ||
+                        // left and right arrows
+                       key === 37 || key === 39 ||
+                        // Del and Ins
+                       key === 46 || key === 45)
+                        return true;
+
+                    return false;
+                });
+            });
+        }
+    </script>
+
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @(Html.ActionLink<HomeController>(x => x.Index(), Language.ApplicationName, new {@class = "navbar-brand"}))
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@(Html.ActionLink<HomeController>(x => x.Index(), Language.Home))</li>
-                <li>@(Html.ActionLink<HomeController>(x => x.About(), Language.About))</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container body-content">
     @Html.Partial("_Alerts")
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - @Language.CopyRight</p>
-    </footer>
-</div>
+    <div class="container body-content">
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", false)
+        @RenderBody()
+
+    </div>
+
+
 </body>
 </html>

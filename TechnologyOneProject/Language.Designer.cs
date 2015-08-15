@@ -97,11 +97,47 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create String.
+        /// </summary>
+        public static string ButtonText {
+            get {
+                return ResourceManager.GetString("ButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CENT.
+        /// </summary>
+        public static string Cent {
+            get {
+                return ResourceManager.GetString("Cent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CENTS.
+        /// </summary>
+        public static string Cents {
+            get {
+                return ResourceManager.GetString("Cents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Rights Reserved: Technology One.
         /// </summary>
         public static string CopyRight {
             get {
                 return ResourceManager.GetString("CopyRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $.
+        /// </summary>
+        public static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
             }
         }
         
@@ -115,7 +151,7 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DOLLAR(S).
+        ///   Looks up a localized string similar to DOLLARS.
         /// </summary>
         public static string Dollars {
             get {
@@ -160,7 +196,7 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to create number.
+        ///   Looks up a localized string similar to UNABLE TO CATER FOR VALUE BIGGER THAN: QUADRILLION..
         /// </summary>
         public static string ErrorGettingNumber {
             get {

@@ -127,7 +127,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\ExtensibleModelMetadataProvider.cs" />
     <Compile Include="Filters\LogAttribute.cs" />
+    <Compile Include="Filters\ModelMetadataRegistry.cs" />
+    <Compile Include="Filters\public interface IModelMetadataFilter.cs" />
+    <Compile Include="Filters\WatermarkConventionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,6 +206,7 @@
     <EmbeddedResource Include="Language.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
