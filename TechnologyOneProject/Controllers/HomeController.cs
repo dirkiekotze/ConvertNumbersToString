@@ -143,14 +143,14 @@ namespace TechnologyOneProject.Controllers
 
                 if (globalString.Length != 0)
                 {
-                    //return View(inputNumber).WithSuccess(globalString.ToString(),string.Format("{0}{1}",Language.Currency,inputNumber.Number));
-                    return View(inputNumber);
+                    return View(inputNumber).WithSuccess(globalString.ToString(), string.Format("{0}{1}", Language.Currency, inputNumber.Number));
+                    //return View(inputNumber);
                 }
-                
+
             }
             catch (Exception err)
             {
-                return View(inputNumber).WithInfo(err.Message,string.Empty);
+                return View(inputNumber).WithInfo(err.Message, string.Empty);
             }
 
 
@@ -175,22 +175,38 @@ namespace TechnologyOneProject.Controllers
             if (splitDollarsAndCents.Length != 2) return;
             //Get to two decimals
             inputCentString = splitDollarsAndCents[1].Substring(0, splitDollarsAndCents[1].Length);
-            stringCents.Append(string.Format("{0} {1} {2}", string.Empty, Language.And,string.Empty));
-            if (inputCentString.Length == 1)
+            stringCents.Append(string.Format("{0} {1} {2}", string.Empty, Language.And, string.Empty));
+            if ((inputCentString.Length == 1) || (inputCentString.Equals("01")))
             {
                 Calculate0To9(inputCentString, stringCents, _lstUnderTen);
-                stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cent));
+                if (inputCentString.Equals("1") || inputCentString.Equals("01"))
+                {
+                    stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cent));
+                }
+                else
+                {
+                    stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cents));
+                }
+                
             }
             else
             {
                 if (Convert.ToInt32(inputCentString) <= 9)
                 {
+                    Calculate0To9(inputCentString, stringCents, _lstUnderTen);
+                }
+                else if (Convert.ToInt32(inputCentString) < 20)
+                {
                     Calculate10To19(inputCentString, stringCents, _lstTenTo19);
                 }
-                stringCents.Append(Calculate20To99(inputCentString));
+                else if (Convert.ToInt32(inputCentString) > 19)
+                {
+                    stringCents.Append(Calculate20To99(inputCentString));
+                }
                 stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cents));
+
             }
-           
+
         }
 
         private static string AddSpace(StringBuilder inputString)
@@ -375,7 +391,7 @@ namespace TechnologyOneProject.Controllers
                 case Dollar:
                     globalString.Append(stringDollars);
                     //Check for .1 and no other values
-                    AddCents(globalString, globalString.Length == 0 ? stringCents.Replace(Language.And,"") : stringCents);
+                    AddCents(globalString, globalString.Length == 0 ? stringCents.Replace(Language.And, "") : stringCents);
                     break;
             }
 
@@ -400,7 +416,7 @@ namespace TechnologyOneProject.Controllers
                 switch (_workingWithIndicator)
                 {
                     case FirstLoop:
-                        CreateValuesAndAddCurrency(inputString, currentStringDollars, Convert.ToInt32(inputString) < 10 ? Language.Dollar : Language.Dollars);
+                        CreateValuesAndAddCurrency(inputString, currentStringDollars, GetCorrectDollarString(inputString));
                         break;
                     case SecondLoop:
                         CreateValuesAndAddCurrency(inputString, currentStringThousands, Language.Thousand);
@@ -421,6 +437,19 @@ namespace TechnologyOneProject.Controllers
             }
         }
 
+        private static string GetCorrectDollarString(string inputString)
+        {
+            if (inputString.Length < 3)
+            {
+                return Convert.ToInt32(inputString) == 1 ? Language.Dollar : Language.Dollars;
+            }
+            else
+            {
+                return Language.Dollars;
+            }
+
+        }
+
         private void CreateValuesAndAddCurrency(string inputString, StringBuilder currentStringDollars, string currency)
         {
             var stringValue =
@@ -432,7 +461,7 @@ namespace TechnologyOneProject.Controllers
             return;
         }
 
-        
+
         private string GetCurrentInputStringFragment(string inputDollarString, int loopCounter)
         {
             return _lstInputBreakUp[loopCounter];

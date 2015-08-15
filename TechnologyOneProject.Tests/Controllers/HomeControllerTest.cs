@@ -28,6 +28,7 @@ namespace TechnologyOneProject.Tests.Controllers
             return result;
         }
 
+        
         [TestMethod]
         public void Given1CentReturnOneCent()
         {
