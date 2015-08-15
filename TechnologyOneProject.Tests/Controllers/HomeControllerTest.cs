@@ -14,18 +14,72 @@ namespace TechnologyOneProject.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
-        private static ViewResult SetupController(double input)
+        private static Controller SetupController(double input)
         {
             //Arrange
             var controller = new HomeController();
             //Act
             var inputNumber = new InputNumber { Number = input };
-            //var result = controller.Index(inputNumber).WithSuccess() as ViewResult;
-            var result = controller.Index(inputNumber) as ViewResult;
+            var result = controller.Index(inputNumber).WithSuccess("","") as AlertDecoratorResult;
+           return controller;
+        }
 
-            //return View(inputNumber).WithSuccess(globalString.ToString(), string.Format("{0}{1}", Language.Currency, inputNumber.Number));
 
-            return result;
+        [TestMethod]
+        public void Given123456InputSplitValues1EntryMustBe123()
+        {
+            Controller controller = SetupController(123456);
+            var result = ((TechnologyOneProject.Controllers.HomeController) (controller));
+           
+            //Assert
+            if (result != null)
+            {
+                Assert.AreEqual("123", result.ViewBag.InputSplitValues[1]);
+                
+            }
+            else
+            {
+                Assert.AreEqual(1, 2);
+            }
+
+        }
+
+        [TestMethod]
+        public void Given1234567InputSplitValues2ValueMustBe1()
+        {
+            Controller controller = SetupController(1234567);
+            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+
+            //Assert
+            if (result != null)
+            {
+                Assert.AreEqual("1", result.ViewBag.InputSplitValues[2]);
+                
+            }
+            else
+            {
+                Assert.AreEqual(1, 2);
+            }
+
+        }
+
+        [TestMethod]
+        public void Given12InputSplitValues0ValueMustBe12()
+        {
+            Controller controller = SetupController(12);
+            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+
+            //Assert
+            if (result != null)
+            {
+                Assert.AreEqual("12", result.ViewBag.InputSplitValues[0]);
+
+            }
+            else
+            {
+                Assert.AreEqual(1, 2);
+            }
+
         }
 
         
@@ -33,7 +87,7 @@ namespace TechnologyOneProject.Tests.Controllers
         public void Given1CentReturnOneCent()
         {
             var result = SetupController(.1);
-            var expected = "ONE CENT";
+            var expected = "TEN CENTS";
             var actual = string.Empty;
 
             //Assert
@@ -72,7 +126,7 @@ namespace TechnologyOneProject.Tests.Controllers
         public void Given5DollarsReturnFive()
         {
             var result = SetupController(5);
-            var expected = "FIVE DOLLAR";
+            var expected = "FIVE DOLLARS";
             var actual = string.Empty;
 
             //Assert
@@ -111,7 +165,7 @@ namespace TechnologyOneProject.Tests.Controllers
         public void Given11DollarsReturnEleven()
         {
             var result = SetupController(11);
-            var expected = "ELEVEN DOLLAR";
+            var expected = "ELEVEN DOLLARS";
             var actual = string.Empty;
 
             //Assert
@@ -283,7 +337,7 @@ namespace TechnologyOneProject.Tests.Controllers
         public void Given118DollarsReturnOneHundredAndEighteen()
         {
             var result = SetupController(118);
-            var expected = "ONE HUNDRED AND EIGTHEEN DOLLARS";
+            var expected = "ONE HUNDRED AND EIGHTEEN DOLLARS";
             var actual = string.Empty;
 
             //Assert

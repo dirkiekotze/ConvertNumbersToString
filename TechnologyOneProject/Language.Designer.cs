@@ -169,7 +169,7 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EIGTHEEN.
+        ///   Looks up a localized string similar to EIGHTEEN.
         /// </summary>
         public static string Eighteen {
             get {

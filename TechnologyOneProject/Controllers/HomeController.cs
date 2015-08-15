@@ -171,24 +171,25 @@ namespace TechnologyOneProject.Controllers
 
         private void CalculateCents(string[] splitDollarsAndCents, StringBuilder stringCents)
         {
-            string inputCentString;
             if (splitDollarsAndCents.Length != 2) return;
             //Get to two decimals
-            inputCentString = splitDollarsAndCents[1].Substring(0, splitDollarsAndCents[1].Length);
+            var inputCentString = splitDollarsAndCents[1].Substring(0, splitDollarsAndCents[1].Length);
             stringCents.Append(string.Format("{0} {1} {2}", string.Empty, Language.And, string.Empty));
-            if ((inputCentString.Length == 1) || (inputCentString.Equals("01")))
+
+            //All .1 .3 .4 All the Tens
+            if (inputCentString.Length.Equals(1))
+            {
+                CalculateTensOrHundreds(inputCentString,stringCents,_lstTens);
+                stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cents));
+            }
+            //.01  .02  .03 All Single Cents
+            else if (inputCentString.Length.Equals(2) && (inputCentString.Substring(0, 1).Equals("0")))
             {
                 Calculate0To9(inputCentString, stringCents, _lstUnderTen);
-                if (inputCentString.Equals("1") || inputCentString.Equals("01"))
-                {
-                    stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cent));
-                }
-                else
-                {
-                    stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cents));
-                }
-                
+                stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cent));
+           
             }
+            //.22 .45 .54 etc: Normal Cents
             else
             {
                 if (Convert.ToInt32(inputCentString) <= 9)
@@ -493,6 +494,7 @@ namespace TechnologyOneProject.Controllers
 
             //Total Entries example 1/112/345/678
             _globalWorkingWithIndicator = _lstInputBreakUp.Count;
+            ViewBag.InputSplitValues = _lstInputBreakUp;
         }
 
 
