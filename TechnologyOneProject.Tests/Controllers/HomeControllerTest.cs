@@ -64,6 +64,120 @@ namespace TechnologyOneProject.Tests.Controllers
         }
 
         [TestMethod]
+        public void GivenDot10CentsShouldBe1()
+        {
+            Controller controller = SetupController(.10);
+            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+
+            //Assert
+            if (result != null)
+            {
+                Assert.AreEqual("1", result.ViewBag.Cents);
+
+            }
+            else
+            {
+                Assert.AreEqual(1, 2);
+            }
+
+        }
+
+        [TestMethod]
+        public void GivenDot1111CentsShouldBe11()
+        {
+            Controller controller = SetupController(.1111);
+            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+
+            //Assert
+            if (result != null)
+            {
+                Assert.AreEqual("11", result.ViewBag.Cents);
+
+            }
+            else
+            {
+                Assert.AreEqual(1, 2);
+            }
+
+        }
+
+        [TestMethod]
+        public void Given1CentResultShouldBeOneCent()
+        {
+            Controller controller = SetupController(0.01);
+            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+
+            //Assert
+            if (result != null)
+            {
+                Assert.AreEqual("ONE CENT", result.ViewBag.Output);
+
+            }
+            else
+            {
+                Assert.AreEqual(1, 2);
+            }
+
+        }
+
+        [TestMethod]
+        public void Given2CentResultShouldBeTwoCents()
+        {
+            Controller controller = SetupController(0.02);
+            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+
+            //Assert
+            if (result != null)
+            {
+                Assert.AreEqual("TWO CENTS", result.ViewBag.Output);
+
+            }
+            else
+            {
+                Assert.AreEqual(1, 2);
+            }
+
+        }
+
+        [TestMethod]
+        public void Given22CentResultShouldBeTwentyDashTwoCents()
+        {
+            Controller controller = SetupController(0.22);
+            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+
+            //Assert
+            if (result != null)
+            {
+                Assert.AreEqual("TWENTY-TWO CENTS", result.ViewBag.Output);
+
+            }
+            else
+            {
+                Assert.AreEqual(1, 2);
+            }
+
+        }
+
+        [TestMethod]
+        public void GivenDot1CentResultShouldBeTenCents()
+        {
+            Controller controller = SetupController(0.1);
+            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+
+            //Assert
+            if (result != null)
+            {
+                Assert.AreEqual("TEN CENTS", result.ViewBag.Output);
+
+            }
+            else
+            {
+                Assert.AreEqual(1, 2);
+            }
+
+        }
+
+        [TestMethod]
         public void Given12InputSplitValues0ValueMustBe12()
         {
             Controller controller = SetupController(12);

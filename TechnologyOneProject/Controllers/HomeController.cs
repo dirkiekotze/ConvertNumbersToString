@@ -173,21 +173,25 @@ namespace TechnologyOneProject.Controllers
         {
             if (splitDollarsAndCents.Length != 2) return;
             //Get to two decimals
-            var inputCentString = splitDollarsAndCents[1].Substring(0, splitDollarsAndCents[1].Length);
+            var inputLength = splitDollarsAndCents[1].Length;
+
+            var inputCentString = splitDollarsAndCents[1].Substring(0, CalculateInputLength(splitDollarsAndCents, inputLength));
+            ViewBag.Cents = inputCentString;
             stringCents.Append(string.Format("{0} {1} {2}", string.Empty, Language.And, string.Empty));
 
             //All .1 .3 .4 All the Tens
             if (inputCentString.Length.Equals(1))
             {
-                CalculateTensOrHundreds(inputCentString,stringCents,_lstTens);
+                CalculateTensOrHundreds(inputCentString, stringCents, _lstTens);
                 stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cents));
             }
             //.01  .02  .03 All Single Cents
             else if (inputCentString.Length.Equals(2) && (inputCentString.Substring(0, 1).Equals("0")))
             {
                 Calculate0To9(inputCentString, stringCents, _lstUnderTen);
-                stringCents.Append(string.Format("{0} {1}", string.Empty, Language.Cent));
-           
+                stringCents.Append(inputCentString.Equals("01")
+                    ? string.Format("{0} {1}", string.Empty, Language.Cent)
+                    : string.Format("{0} {1}", string.Empty, Language.Cents));
             }
             //.22 .45 .54 etc: Normal Cents
             else
@@ -208,6 +212,11 @@ namespace TechnologyOneProject.Controllers
 
             }
 
+        }
+
+        private static int CalculateInputLength(string[] splitDollarsAndCents, int inputLength)
+        {
+            return splitDollarsAndCents[1].Length > 2 ? 2 : inputLength;
         }
 
         private static string AddSpace(StringBuilder inputString)
@@ -392,12 +401,17 @@ namespace TechnologyOneProject.Controllers
                 case Dollar:
                     globalString.Append(stringDollars);
                     //Check for .1 and no other values
-                    AddCents(globalString, globalString.Length == 0 ? stringCents.Replace(Language.And, "") : stringCents);
+                    AddCents(globalString, RemoveAndLogic(globalString, stringCents));
                     break;
             }
 
 
 
+        }
+
+        private static StringBuilder RemoveAndLogic(StringBuilder globalString, StringBuilder stringCents)
+        {
+            return globalString.Length == 0 ? stringCents.Replace(" " + Language.And + " ", "") : stringCents;
         }
 
         private static void AddCents(StringBuilder globalString, StringBuilder stringCents)
