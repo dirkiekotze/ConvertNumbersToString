@@ -17,24 +17,24 @@ namespace TechnologyOneProject.Infastructure.Alerts
             return (List<Alert>) tempData[Alerts];
         }
 
-        public static ActionResult WithSuccess(this ActionResult result, string message,string input)
+        public static ActionResult WithSuccess(this ActionResult result, string message, string input)
         {
-            return new AlertDecoratorResult(result, "alert-success", message,input);
+            return new AlertDecoratorResult(result, "alert-success", message, input);
         }
 
-        public static ActionResult WithInfo(this ActionResult result, string message,string input)
+        public static ActionResult WithInfo(this ActionResult result, string message, string input)
         {
-            return new AlertDecoratorResult(result, "alert-info", message,input);
+            return new AlertDecoratorResult(result, "alert-info", message, input);
         }
 
-        public static ActionResult WithWarning(this ActionResult result, string message,string input)
+        public static ActionResult WithWarning(this ActionResult result, string message, string input)
         {
-            return new AlertDecoratorResult(result, "alert-warning", message,input);
+            return new AlertDecoratorResult(result, "alert-warning", message, input);
         }
 
-        public static ActionResult WithError(this ActionResult result, string message,string input)
+        public static ActionResult WithError(this ActionResult result, string message, string input)
         {
-            return new AlertDecoratorResult(result, "alert-danger", message,input);
+            return new AlertDecoratorResult(result, "alert-danger", message, input);
         }
     }
 }

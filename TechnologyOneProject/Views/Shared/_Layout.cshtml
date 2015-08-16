@@ -1,9 +1,8 @@
-﻿@using TechnologyOneProject.Controllers
-@*@using Microsoft.Web.Mvc*@
+﻿@*@using Microsoft.Web.Mvc*@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
@@ -13,16 +12,16 @@
     @RenderSection("scripts", false)
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("#Number").forceNumeric();
         });
 
 
         // forceNumeric() plug-in implementation
-        jQuery.fn.forceNumeric = function () {
+        jQuery.fn.forceNumeric = function() {
 
-            return this.each(function () {
-                $(this).keydown(function (e) {
+            return this.each(function() {
+                $(this).keydown(function(e) {
                     var key = e.which || e.keyCode;
 
                     if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
@@ -31,31 +30,31 @@
                         // Numeric keypad
                         key >= 96 && key <= 105 ||
                         // comma, period and minus, . on keypad
-                       key === 190 || key === 188 || key === 109 || key === 110 ||
+                        key === 190 || key === 188 || key === 109 || key === 110 ||
                         // Backspace and Tab and Enter
-                       key === 8 || key === 9 || key === 13 ||
+                        key === 8 || key === 9 || key === 13 ||
                         // Home and End
-                       key === 35 || key === 36 ||
+                        key === 35 || key === 36 ||
                         // left and right arrows
-                       key === 37 || key === 39 ||
+                        key === 37 || key === 39 ||
                         // Del and Ins
-                       key === 46 || key === 45)
+                        key === 46 || key === 45)
                         return true;
 
                     return false;
                 });
             });
-        }
+        };
     </script>
 
 </head>
 <body>
-    @Html.Partial("_Alerts")
-    <div class="container body-content">
+@Html.Partial("_Alerts")
+<div class="container body-content">
 
-        @RenderBody()
+    @RenderBody()
 
-    </div>
+</div>
 
 
 </body>

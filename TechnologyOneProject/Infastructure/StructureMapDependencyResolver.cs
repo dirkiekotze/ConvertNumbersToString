@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using StructureMap;
 
@@ -9,7 +8,6 @@ namespace TechnologyOneProject.Infastructure
 {
     public class StructureMapDependencyResolver : IDependencyResolver
     {
-
         private readonly Func<IContainer> _containerFactory;
 
         public StructureMapDependencyResolver(Func<IContainer> containerFactory)
@@ -26,7 +24,9 @@ namespace TechnologyOneProject.Infastructure
 
             var container = _containerFactory();
 
-            return serviceType.IsAbstract || serviceType.IsInterface ? container.TryGetInstance(serviceType) : container.GetInstance(serviceType);
+            return serviceType.IsAbstract || serviceType.IsInterface
+                ? container.TryGetInstance(serviceType)
+                : container.GetInstance(serviceType);
         }
 
         public IEnumerable<object> GetServices(Type serviceType)

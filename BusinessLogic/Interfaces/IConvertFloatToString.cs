@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLogic.Interfaces
+﻿namespace BusinessLogic.Interfaces
 {
-    interface IConvertFloatToString
+    internal interface IConvertFloatToString
     {
         string AddAnd(string inputString);
         string GetCurrentInputValue(string inputString, int loopCounter);

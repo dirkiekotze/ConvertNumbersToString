@@ -2,10 +2,9 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using TechnologyOneProject.Infastructure;
 using StructureMap;
 using TechnologyOneProject.Filters;
-
+using TechnologyOneProject.Infastructure;
 
 namespace TechnologyOneProject
 {
@@ -13,16 +12,9 @@ namespace TechnologyOneProject
     {
         public IContainer Container
         {
-            get
-            {
-                return (IContainer)HttpContext.Current.Items["_Container"];
-            }
-            set
-            {
-                HttpContext.Current.Items["_Container"] = value;
-            }
+            get { return (IContainer) HttpContext.Current.Items["_Container"]; }
+            set { HttpContext.Current.Items["_Container"] = value; }
         }
-
 
         protected void Application_Start()
         {
@@ -44,8 +36,6 @@ namespace TechnologyOneProject
                 //cfg.AddRegistry(new ModelMetadataRegistry());
                 //cfg.For<IFilterProvider>().Use(
                 //    new StructureMapFilterProvider(() => Container ?? ObjectFactory.Container));
-
-
             });
         }
     }

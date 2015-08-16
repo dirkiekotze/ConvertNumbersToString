@@ -2,7 +2,7 @@ using System;
 
 namespace BusinessLogic.Interfaces
 {
-    class ConvertFloatToString : IConvertFloatToString
+    internal class ConvertFloatToString : IConvertFloatToString
     {
         public string AddAnd(string inputString)
         {

@@ -1,5 +1,4 @@
-﻿@using TechnologyOneProject.Helpers
-@model TechnologyOneProject.Models.InputNumber
+﻿@model TechnologyOneProject.Models.InputNumber
 
 @{
     ViewBag.Title = "Home Page";
@@ -20,13 +19,13 @@
 </style>
 
 <script type="text/javascript">
-    $(function () {
+    $(function() {
 
         $("#Number").forceNumeric();
         $("#Number").focus();
         $("#Number").val("");
 
-        $('#Number').keyup(function () {
+        $('#Number').keyup(function() {
             if ($(this).val().indexOf('.') !== -1) {
                 if ($(this).val().split(".")[1].length > 2) {
                     if (isNaN(parseFloat(this.value))) return;
@@ -41,7 +40,6 @@
 </script>
 
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -50,18 +48,17 @@
 
         <div class="form-horizontal">
 
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
             <div class="form-group">
                 <div>
                     @Html.EditorFor(model => model.Number)
 
                 </div>
                 <div style="margin-top: 10px;" align="center">
-                    <input type="submit" value="Submit" class="btn btn-default" />
+                    <input type="submit" value="Submit" class="btn btn-default"/>
                 </div>
-                @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Number, "", new {@class = "text-danger"})
             </div>
-
 
 
         </div>

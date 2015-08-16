@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TechnologyOneProject;
 using TechnologyOneProject.Controllers;
 using TechnologyOneProject.Infastructure.Alerts;
 using TechnologyOneProject.Models;
@@ -19,184 +14,164 @@ namespace TechnologyOneProject.Tests.Controllers
             //Arrange
             var controller = new HomeController();
             //Act
-            var inputNumber = new InputNumber { Number = input };
-            var result = controller.Index(inputNumber).WithSuccess("","") as AlertDecoratorResult;
-           return controller;
+            var inputNumber = new InputNumber {Number = input};
+            var result = controller.Index(inputNumber).WithSuccess("", "") as AlertDecoratorResult;
+            return controller;
         }
-
 
         [TestMethod]
         public void Given123456InputSplitValues1EntryMustBe123()
         {
-            Controller controller = SetupController(123456);
-            var result = ((TechnologyOneProject.Controllers.HomeController) (controller));
-           
+            var controller = SetupController(123456);
+            var result = ((HomeController) (controller));
+
             //Assert
             if (result != null)
             {
                 Assert.AreEqual("123", result.ViewBag.InputSplitValues[1]);
-                
             }
             else
             {
                 Assert.AreEqual(1, 2);
             }
-
         }
 
         [TestMethod]
         public void Given1234567InputSplitValues2ValueMustBe1()
         {
-            Controller controller = SetupController(1234567);
-            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+            var controller = SetupController(1234567);
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
             {
                 Assert.AreEqual("1", result.ViewBag.InputSplitValues[2]);
-                
             }
             else
             {
                 Assert.AreEqual(1, 2);
             }
-
         }
 
         [TestMethod]
         public void GivenDot10CentsShouldBe1()
         {
-            Controller controller = SetupController(.10);
-            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+            var controller = SetupController(.10);
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
             {
                 Assert.AreEqual("1", result.ViewBag.Cents);
-
             }
             else
             {
                 Assert.AreEqual(1, 2);
             }
-
         }
 
         [TestMethod]
         public void GivenDot1111CentsShouldBe11()
         {
-            Controller controller = SetupController(.1111);
-            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+            var controller = SetupController(.1111);
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
             {
                 Assert.AreEqual("11", result.ViewBag.Cents);
-
             }
             else
             {
                 Assert.AreEqual(1, 2);
             }
-
         }
 
         [TestMethod]
         public void Given1CentResultShouldBeOneCent()
         {
-            Controller controller = SetupController(0.01);
-            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+            var controller = SetupController(0.01);
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
             {
                 Assert.AreEqual("ONE CENT", result.ViewBag.Output);
-
             }
             else
             {
                 Assert.AreEqual(1, 2);
             }
-
         }
 
         [TestMethod]
         public void Given2CentResultShouldBeTwoCents()
         {
-            Controller controller = SetupController(0.02);
-            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+            var controller = SetupController(0.02);
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
             {
                 Assert.AreEqual("TWO CENTS", result.ViewBag.Output);
-
             }
             else
             {
                 Assert.AreEqual(1, 2);
             }
-
         }
 
         [TestMethod]
         public void Given22CentResultShouldBeTwentyDashTwoCents()
         {
-            Controller controller = SetupController(0.22);
-            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+            var controller = SetupController(0.22);
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
             {
                 Assert.AreEqual("TWENTY-TWO CENTS", result.ViewBag.Output);
-
             }
             else
             {
                 Assert.AreEqual(1, 2);
             }
-
         }
 
         [TestMethod]
         public void GivenDot1CentResultShouldBeTenCents()
         {
-            Controller controller = SetupController(0.1);
-            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+            var controller = SetupController(0.1);
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
             {
                 Assert.AreEqual("TEN CENTS", result.ViewBag.Output);
-
             }
             else
             {
                 Assert.AreEqual(1, 2);
             }
-
         }
 
         [TestMethod]
         public void Given12InputSplitValues0ValueMustBe12()
         {
-            Controller controller = SetupController(12);
-            var result = ((TechnologyOneProject.Controllers.HomeController)(controller));
+            var controller = SetupController(12);
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
             {
                 Assert.AreEqual("12", result.ViewBag.InputSplitValues[0]);
-
             }
             else
             {
                 Assert.AreEqual(1, 2);
             }
-
         }
 
-        
         [TestMethod]
         public void Given1CentReturnOneCent()
         {
@@ -214,7 +189,6 @@ namespace TechnologyOneProject.Tests.Controllers
             {
                 Assert.AreEqual(expected, actual);
             }
-
         }
 
         [TestMethod]
@@ -274,7 +248,6 @@ namespace TechnologyOneProject.Tests.Controllers
             }
         }
 
-
         [TestMethod]
         public void Given11DollarsReturnEleven()
         {
@@ -301,7 +274,7 @@ namespace TechnologyOneProject.Tests.Controllers
             var controller = new HomeController();
 
             //Act
-            var inputNumber = new InputNumber { Number = 19 };
+            var inputNumber = new InputNumber {Number = 19};
             var result = controller.Index(inputNumber) as ViewResult;
             var expected = "NINETEEN DOLLARS";
 
@@ -319,7 +292,7 @@ namespace TechnologyOneProject.Tests.Controllers
             var controller = new HomeController();
 
             //Act
-            var inputNumber = new InputNumber { Number = 30 };
+            var inputNumber = new InputNumber {Number = 30};
             var result = controller.Index(inputNumber) as ViewResult;
             var expected = "THIRTEE";
 
@@ -349,7 +322,6 @@ namespace TechnologyOneProject.Tests.Controllers
             }
         }
 
-        
         [TestMethod]
         public void Given66DollarsReturnSixtySix()
         {
@@ -376,7 +348,7 @@ namespace TechnologyOneProject.Tests.Controllers
             var controller = new HomeController();
 
             //Act
-            var inputNumber = new InputNumber { Number = 80 };
+            var inputNumber = new InputNumber {Number = 80};
             var result = controller.Index(inputNumber) as ViewResult;
             var expected = "EIGHTY DOLLARS";
 
@@ -404,7 +376,6 @@ namespace TechnologyOneProject.Tests.Controllers
             {
                 Assert.AreEqual(expected, actual);
             }
-            
         }
 
         [TestMethod]
@@ -424,7 +395,6 @@ namespace TechnologyOneProject.Tests.Controllers
             {
                 Assert.AreEqual(expected, actual);
             }
-
         }
 
         [TestMethod]
@@ -444,7 +414,6 @@ namespace TechnologyOneProject.Tests.Controllers
             {
                 Assert.AreEqual(expected, actual);
             }
-
         }
 
         [TestMethod]
@@ -464,7 +433,6 @@ namespace TechnologyOneProject.Tests.Controllers
             {
                 Assert.AreEqual(expected, actual);
             }
-
         }
 
         [TestMethod]
@@ -484,7 +452,6 @@ namespace TechnologyOneProject.Tests.Controllers
             {
                 Assert.AreEqual(expected, actual);
             }
-
         }
 
         [TestMethod]
@@ -504,7 +471,6 @@ namespace TechnologyOneProject.Tests.Controllers
             {
                 Assert.AreEqual(expected, actual);
             }
-
         }
 
         [TestMethod]
@@ -524,11 +490,6 @@ namespace TechnologyOneProject.Tests.Controllers
             {
                 Assert.AreEqual(expected, actual);
             }
-
         }
-
-       
-
-
     }
 }

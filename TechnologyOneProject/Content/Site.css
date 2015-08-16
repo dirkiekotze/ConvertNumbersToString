@@ -14,14 +14,12 @@
 
 input,
 select,
-textarea {
-    max-width: 280px;
-}
+textarea { max-width: 280px; }
 
 .alert-container {
-	position: fixed; 
-	left:0; 
-	right:0; 
-	padding-left: 3em;
-	padding-right: 3em;
+    left: 0;
+    padding-left: 3em;
+    padding-right: 3em;
+    position: fixed;
+    right: 0;
 }

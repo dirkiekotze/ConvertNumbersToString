@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using WebGrease.Css.Extensions;
@@ -16,7 +15,7 @@ namespace TechnologyOneProject.Filters
             _metadataFilters = metadataFilters;
         }
 
-        protected override System.Web.Mvc.ModelMetadata CreateMetadata(
+        protected override ModelMetadata CreateMetadata(
             IEnumerable<Attribute> attributes,
             Type containerType,
             Func<object> modelAccessor,

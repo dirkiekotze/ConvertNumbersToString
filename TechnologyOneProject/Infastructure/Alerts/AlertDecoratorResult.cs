@@ -18,13 +18,12 @@ namespace TechnologyOneProject.Infastructure.Alerts
         public ActionResult InnerResult { get; set; }
         public string AlertClass { get; set; }
         public string Message { get; set; }
-
         public string Input { get; set; }
 
         public override void ExecuteResult(ControllerContext context)
         {
             var alerts = context.Controller.TempData.GetAlerts();
-            alerts.Add(new Alert(AlertClass, Message,Input));
+            alerts.Add(new Alert(AlertClass, Message, Input));
             InnerResult.ExecuteResult(context);
         }
     }

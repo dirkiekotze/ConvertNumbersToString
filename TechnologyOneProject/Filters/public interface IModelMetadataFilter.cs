@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 
 namespace TechnologyOneProject.Filters
 {
     public interface IModelMetadataFilter
     {
-        void TransformMetadata(System.Web.Mvc.ModelMetadata metadata,
+        void TransformMetadata(ModelMetadata metadata,
             IEnumerable<Attribute> attributes);
     }
 }

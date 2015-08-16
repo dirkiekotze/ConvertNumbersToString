@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 
 namespace TechnologyOneProject.Filters
 {
     public class WatermarkConventionFilter : IModelMetadataFilter
     {
-        public void TransformMetadata(System.Web.Mvc.ModelMetadata metadata,
+        public void TransformMetadata(ModelMetadata metadata,
             IEnumerable<Attribute> attributes)
         {
             if (!string.IsNullOrEmpty(metadata.DisplayName) &&
