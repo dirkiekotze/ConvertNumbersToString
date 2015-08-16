@@ -127,7 +127,7 @@ namespace TechnologyOneProject.Controllers
                 {
                     return View(inputNumber)
                         .WithSuccess(globalString.ToString(),
-                            string.Format("{0}{1}", Language.Currency, inputNumber.Number));
+                            string.Format("{0}{1}", Language.Currency, AddInputNumberToOutput(inputNumber)));
                 }
             }
             catch (Exception err)
@@ -139,6 +139,8 @@ namespace TechnologyOneProject.Controllers
 
             return View(inputNumber);
         }
+
+        
 
         #region Private Variables
 
@@ -175,6 +177,14 @@ namespace TechnologyOneProject.Controllers
         #endregion
 
         #region Private Functions
+        private static string AddInputNumberToOutput(InputNumber inputNumber)
+        {
+            if (!inputNumber.Number.Contains("."))
+            {
+                return string.Format("{0}{1}", inputNumber.Number, ".00");
+            }
+            return inputNumber.Number;
+        }
 
         private static void AddCents(StringBuilder globalString, StringBuilder stringCents)
         {
@@ -201,7 +211,7 @@ namespace TechnologyOneProject.Controllers
 
         private void CalculateCents(string[] splitDollarsAndCents, StringBuilder stringCents)
         {
-            if (splitDollarsAndCents.Length != 2) return;
+            if ((splitDollarsAndCents.Length != 2) || (string.IsNullOrWhiteSpace(splitDollarsAndCents[1]))) return;
 
             //Two decimals
             var inputLength = splitDollarsAndCents[1].Length;

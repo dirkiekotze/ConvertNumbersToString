@@ -14,7 +14,9 @@
 
 input,
 select,
-textarea { max-width: 280px; }
+textarea {
+    max-width: 280px;
+}
 
 .alert-container {
     left: 0;
@@ -22,4 +24,15 @@ textarea { max-width: 280px; }
     padding-right: 3em;
     position: fixed;
     right: 0;
+}
+
+section {
+    border-radius: 1em;
+    color: white;
+    left: 50%;
+    margin-right: -50%;
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
