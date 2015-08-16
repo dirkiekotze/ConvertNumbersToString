@@ -25,6 +25,7 @@ namespace TechnologyOneProject.Tests.Controllers
 
         #region Test String Split Function
 
+        //123/456
         [TestMethod]
         public void Given123456InputSplitValues1EntryMustBe123()
         {
@@ -42,6 +43,7 @@ namespace TechnologyOneProject.Tests.Controllers
             }
         }
 
+        //1/234/567
         [TestMethod]
         public void Given1234567InputSplitValues2ValueMustBe1()
         {

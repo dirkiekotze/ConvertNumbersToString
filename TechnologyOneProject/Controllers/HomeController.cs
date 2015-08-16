@@ -9,38 +9,6 @@ namespace TechnologyOneProject.Controllers
 {
     public class HomeController : Controller
     {
-        #region Private Variables
-        private const int FirstLoop = 0;
-        private const int SecondLoop = 1;
-        private const int ThirdLoop = 2;
-        private const int FourthLoop = 3;
-        private const int FifthLoop = 4;
-        private const int SixLoop = 5;
-        private const int SeventhLoop = 6;
-        private const int EightLoop = 8;
-        private const int SexTillion = 8;
-        private const int QuanTillion = 7;
-        private const int Quadrillions = 6;
-        private const int Trillion = 5;
-        private const int Billion = 4;
-        private const int Million = 3;
-        private const int Thousand = 2;
-        private const int Dollar = 1;
-        private const int Ten = 10;
-        private const int Twenty = 20;
-        private const int Hundred = 100;
-        private const int ThousandVal = 1000;
-        private const int CalculateCent = 2;
-        private readonly List<string> _lstHundreds;
-        private readonly List<string> _lstInputBreakUp = new List<string>();
-        private readonly List<string> _lstTens;
-        private readonly List<string> _lstTenTo19;
-        private readonly List<string> _lstUnderTen;
-        private string _globalError;
-        private int _globalWorkingWithIndicator;
-        private int _workingWithIndicator;
-        #endregion
-
         public HomeController()
         {
             #region Create Lists
@@ -102,7 +70,6 @@ namespace TechnologyOneProject.Controllers
             #endregion
         }
 
-       
         public ActionResult Index()
         {
             return View(new InputNumber());
@@ -130,6 +97,7 @@ namespace TechnologyOneProject.Controllers
             if (!ModelState.IsValid) return View(inputNumber);
 
             #region Main Logic
+
             try
             {
                 ValidateInput(inputNumber);
@@ -172,6 +140,39 @@ namespace TechnologyOneProject.Controllers
             return View(inputNumber);
         }
 
+        #region Private Variables
+
+        private const int FirstLoop = 0;
+        private const int SecondLoop = 1;
+        private const int ThirdLoop = 2;
+        private const int FourthLoop = 3;
+        private const int FifthLoop = 4;
+        private const int SixLoop = 5;
+        private const int SeventhLoop = 6;
+        private const int EightLoop = 8;
+        private const int SexTillion = 8;
+        private const int QuanTillion = 7;
+        private const int Quadrillions = 6;
+        private const int Trillion = 5;
+        private const int Billion = 4;
+        private const int Million = 3;
+        private const int Thousand = 2;
+        private const int Dollar = 1;
+        private const int Ten = 10;
+        private const int Twenty = 20;
+        private const int Hundred = 100;
+        private const int ThousandVal = 1000;
+        private const int CalculateCent = 2;
+        private readonly List<string> _lstHundreds;
+        private readonly List<string> _lstInputBreakUp = new List<string>();
+        private readonly List<string> _lstTens;
+        private readonly List<string> _lstTenTo19;
+        private readonly List<string> _lstUnderTen;
+        private string _globalError;
+        private int _globalWorkingWithIndicator;
+        private int _workingWithIndicator;
+
+        #endregion
 
         #region Private Functions
 
@@ -197,16 +198,17 @@ namespace TechnologyOneProject.Controllers
         {
             return string.Format("{0} {1}", inputString, string.Empty);
         }
-       
+
         private void CalculateCents(string[] splitDollarsAndCents, StringBuilder stringCents)
         {
             if (splitDollarsAndCents.Length != 2) return;
-            
+
             //Two decimals
             var inputLength = splitDollarsAndCents[1].Length;
 
             //Get the correct amount of decimals
-            var inputCentString = splitDollarsAndCents[1].Substring(0,CalculateInputLength(splitDollarsAndCents, inputLength));
+            var inputCentString = splitDollarsAndCents[1].Substring(0,
+                CalculateInputLength(splitDollarsAndCents, inputLength));
 
             //For Unit Testing
             ViewBag.Cents = inputCentString;
@@ -249,7 +251,7 @@ namespace TechnologyOneProject.Controllers
         {
             return splitDollarsAndCents[1].Length > 2 ? 2 : inputLength;
         }
-       
+
         private StringBuilder CreateStringValues(string inputValue)
         {
             var strValue = new StringBuilder();
@@ -470,8 +472,7 @@ namespace TechnologyOneProject.Controllers
             }
         }
 
-       
-        
+
         private void ExtractStringValuesFromInput(string inputString, StringBuilder currentStringDollars,
             StringBuilder currentStringThousands, StringBuilder currentStringMillions,
             StringBuilder currentStringBillions, StringBuilder currentStringTrillions,
@@ -527,7 +528,7 @@ namespace TechnologyOneProject.Controllers
             return _lstInputBreakUp[loopCounter];
         }
 
-       
+
         private static bool IsValidInputForThisTest(string inputString)
         {
             var test = false;
@@ -546,7 +547,7 @@ namespace TechnologyOneProject.Controllers
             return test;
         }
 
-        
+
         private static StringBuilder RemoveAndLogic(StringBuilder globalString, StringBuilder stringCents)
         {
             return globalString.Length == 0
@@ -568,7 +569,7 @@ namespace TechnologyOneProject.Controllers
             {
                 //values less than 3
                 inputToStore = inputDollarString.Substring(inputDollarString.Length - i, counter++);
-                if (i % 3 == 0)
+                if (i%3 == 0)
                 {
                     _lstInputBreakUp.Add(inputDollarString.Substring(inputDollarString.Length - i, i + secondCounter));
                     inputToStore = string.Empty;
