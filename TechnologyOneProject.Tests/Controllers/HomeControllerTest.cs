@@ -9,6 +9,8 @@ namespace TechnologyOneProject.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+        #region Setup Controller
+
         private static Controller SetupController(string input)
         {
             //Arrange
@@ -19,8 +21,10 @@ namespace TechnologyOneProject.Tests.Controllers
             return controller;
         }
 
+        #endregion
 
         #region Test String Split Function
+
         [TestMethod]
         public void Given123456InputSplitValues1EntryMustBe123()
         {
@@ -55,7 +59,6 @@ namespace TechnologyOneProject.Tests.Controllers
             }
         }
 
-        
         #endregion
 
         #region Test Cent Logic
@@ -166,7 +169,7 @@ namespace TechnologyOneProject.Tests.Controllers
         public void Given1Dot1ItShouldReturnOneDollarAndTenCents()
         {
             var controller = SetupController("1.1");
-            var result = ((HomeController)(controller));
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
@@ -187,7 +190,7 @@ namespace TechnologyOneProject.Tests.Controllers
         public void Given01StringItShouldSayCent()
         {
             var controller = SetupController(".01");
-            var result = ((HomeController)(controller));
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
@@ -204,7 +207,7 @@ namespace TechnologyOneProject.Tests.Controllers
         public void Given02StringItShouldSayCents()
         {
             var controller = SetupController(".02");
-            var result = ((HomeController)(controller));
+            var result = ((HomeController) (controller));
 
             //Assert
             if (result != null)
@@ -545,6 +548,7 @@ namespace TechnologyOneProject.Tests.Controllers
 
         #endregion
 
+        #region General Tests
 
         [TestMethod]
         public void Given12InputSplitValues0ValueMustBe12()
@@ -882,5 +886,7 @@ namespace TechnologyOneProject.Tests.Controllers
                 Assert.AreEqual(expected, actual);
             }
         }
+
+        #endregion
     }
 }

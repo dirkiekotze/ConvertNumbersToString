@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TechnologyOneProject.Models
+﻿namespace TechnologyOneProject.Models
 {
     public class InputNumber
     {
