@@ -163,7 +163,7 @@
     <value>ELEVEN</value>
   </data>
   <data name="ErrorGettingNumber" xml:space="preserve">
-    <value>UNABLE TO CATER FOR VALUE BIGGER THAN: QUADRILLION.</value>
+    <value>UNABLE TO CATER FOR VALUES BIGGER THAN: SEXTILLION: WE ARE REALLY EMBARRESSED NOW. </value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
     <value>Error Occurred:</value>
@@ -192,6 +192,12 @@
   <data name="Hundred" xml:space="preserve">
     <value>HUNDRED</value>
   </data>
+  <data name="InputEmptyError" xml:space="preserve">
+    <value>INPUT NOT ALLOWED TO BE EMPTY ?</value>
+  </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>INVALID INPUT. PLEASE TRY AGAIN?</value>
+  </data>
   <data name="Million" xml:space="preserve">
     <value>MILLION</value>
   </data>
@@ -210,6 +216,9 @@
   <data name="Quadrillion" xml:space="preserve">
     <value>QUADRILLION</value>
   </data>
+  <data name="Quintillion" xml:space="preserve">
+    <value>QUINTILLION</value>
+  </data>
   <data name="Seven" xml:space="preserve">
     <value>SEVEN</value>
   </data>
@@ -218,6 +227,9 @@
   </data>
   <data name="Seventy" xml:space="preserve">
     <value>SEVENTY</value>
+  </data>
+  <data name="SexTillion" xml:space="preserve">
+    <value>SEXTILLION</value>
   </data>
   <data name="Six" xml:space="preserve">
     <value>SIX</value>

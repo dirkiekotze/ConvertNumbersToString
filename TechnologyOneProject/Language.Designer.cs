@@ -196,7 +196,7 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UNABLE TO CATER FOR VALUE BIGGER THAN: QUADRILLION..
+        ///   Looks up a localized string similar to UNABLE TO CATER FOR VALUES BIGGER THAN: SEXTILLION: WE ARE REALLY EMBARRESSED NOW. .
         /// </summary>
         public static string ErrorGettingNumber {
             get {
@@ -286,6 +286,24 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INPUT NOT ALLOWED TO BE EMPTY ?.
+        /// </summary>
+        public static string InputEmptyError {
+            get {
+                return ResourceManager.GetString("InputEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INVALID INPUT. PLEASE TRY AGAIN?.
+        /// </summary>
+        public static string InvalidInput {
+            get {
+                return ResourceManager.GetString("InvalidInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MILLION.
         /// </summary>
         public static string Million {
@@ -340,6 +358,15 @@ namespace TechnologyOneProject {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to QUINTILLION.
+        /// </summary>
+        public static string Quintillion {
+            get {
+                return ResourceManager.GetString("Quintillion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SEVEN.
         /// </summary>
         public static string Seven {
@@ -363,6 +390,15 @@ namespace TechnologyOneProject {
         public static string Seventy {
             get {
                 return ResourceManager.GetString("Seventy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEXTILLION.
+        /// </summary>
+        public static string SexTillion {
+            get {
+                return ResourceManager.GetString("SexTillion", resourceCulture);
             }
         }
         

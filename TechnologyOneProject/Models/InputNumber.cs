@@ -4,7 +4,6 @@ namespace TechnologyOneProject.Models
 {
     public class InputNumber
     {
-        [Required]
-        public double Number { get; set; }
+        public string Number { get; set; }
     }
 }
